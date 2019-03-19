@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+<title>Log in: Text Only</title>
+<div class="container">
+    <div class="jumbotron">
+    <h1>Log in</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-default" value="Login">
+    </form>
+    </div>
+
+</div>
+
+{% endblock %}
