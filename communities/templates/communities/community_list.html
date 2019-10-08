@@ -1,0 +1,48 @@
+{% extends "communities/community_base.html" %}
+
+{% block precommunity %}
+    <div class="col-md-4">
+        <div class="content">
+            {% if user.is_authenticated %}
+                <h2>Welcome Back, {{user.username}}! <a href="{% url 'posts:for_user' username=user.username %}"></a> @{{user.username}}</h2>
+            {% endif %}
+            <h2>Communities</h2>
+            <p>Heyo! welcome to Text Only's Communities!</p>
+
+
+        </div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'community:create' %}" class="btn btn-md btn-fill btn-warning">
+                <span class="glyphicon glyphicon-plus-sign">Create New community</span>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+{% block community_content %}
+<div class="col-md-8">
+    <div class="list-community">
+        {% for community in object_list %}
+            <a href="{% url 'communities:single' slug=community.slug %}">
+                <h3 class="title list-community-item-heading">{{community.name}}</h3>
+                <div class="list-community-item-text container-fluid">
+                    {{community.description_html|safe}}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="badge">{{community.members.count}}</span>
+                            member{{community.members.count|pluralize}}
+                        </div>
+                        <div class="col-md-4">
+                            <span class="badge">{{community.posts.count}}</span>
+                            post{{community.posts.count|pluralize}}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
