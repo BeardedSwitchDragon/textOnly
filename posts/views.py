@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import *
-
+from django.contrib import messages
 from django.http import Http404
 from django.views import generic
 
@@ -9,7 +9,7 @@ from braces.views import SelectRelatedMixin
 
 from . import models
 from . import forms
-
+from django.db import IntegrityError
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -39,7 +39,7 @@ class PostDetail(SelectRelatedMixin, generic.DetailView):
     select_related = ("user", "community")
 
     def get_queryset(self):
-        queryset = super.get_queryset()
+        queryset = super().get_queryset()
         return queryset.filter(user__username__iexact=self.kwargs.get("username"))
 
 
@@ -50,9 +50,18 @@ class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.user = self.request.username
-        self.object.save()
-        return super().form_valid(form)
+        self.object.user = self.request.user
+        try:
+            self.object.save()
+            return super().form_valid(form)
+        except IntegrityError:
+            messages.error(self.request, "It looks like something went wrong. Is this post a duplicate?")
+
+        return render(self.request, "posts/post_form.html", {"form": form})
+
+
+
+
 
 
 class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
@@ -65,5 +74,5 @@ class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
         return queryset.filter(user_id = self.request.user.id)
 
     def delete(self,*args,**kwargs):
-        message.success(self.request, "Post Deleted")
+        messages.success(self.request, "Post Deleted")
         return super().delete(*args,**kwargs)
