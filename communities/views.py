@@ -32,7 +32,7 @@ class JoinCommunity(LoginRequiredMixin, generic.RedirectView):
         try:
             CommunityMember.objects.create(user=self.request.user, community=community)
         except IntegrityError:
-            messages.warning(self.request,"Warning, already a member!")
+            messages.warning(self.request,"Already a member!")
         else:
             messages.success(self.request, "You are now a member!")
         return super().get(request, *args, **kwargs)

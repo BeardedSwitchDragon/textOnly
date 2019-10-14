@@ -1,0 +1,4 @@
+
+
+import util
+$('.alert').alert()

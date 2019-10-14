@@ -6,13 +6,7 @@
     <form id="postForm" action="" method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        {% if messages %}
-            <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="alert alert-danger"{% endif %}>{{ message }}</li>
-            {% endfor %}
-            </ul>
-            {% endif %}
+        
 
         <input type="submit" name="" value="Post" class="btn btn-primary btn-large">
     </form>
