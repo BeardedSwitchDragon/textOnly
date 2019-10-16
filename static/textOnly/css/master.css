@@ -18,3 +18,18 @@ ul {
     padding-top: 25px;
     padding-bottom: 5px;
 }
+
+.breadcrumb {
+    width: 75vw !important;
+    position: relative;
+}
+
+#post-breadcrumb {
+    background-color: #dce6f5;
+}
+
+#post-delete {
+    position: absolute;
+    right: 5px;
+    font-size: 15px;
+}
