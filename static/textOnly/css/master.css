@@ -33,3 +33,14 @@ ul {
     right: 5px;
     font-size: 15px;
 }
+
+ #nav-pills {
+    background-color: #c4c4c4 !important;
+    color: #728f96;
+}
+.nav-pills>li>a.active,
+.nav-pills>li>a:hover,
+.nav-pills>li>a:focus {
+    background-color: #c4c4c4 !important;
+    color: #728f96;
+}
