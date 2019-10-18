@@ -4,16 +4,16 @@
     <div class="breadcrumb" id="post-breadcrumb">
         <h3>{{post.message_html|safe}}</h3>
         {% if user.is_authenticated and post.user == user %}
-        <a href="{% url 'posts:delete' pk=post.pk %}" title="delete" class="btn btn-simple">
-            <span class="text-danger icon-label" id="post-delete"><strong>Delete</strong></span>
-        </a>
+            <a href="{% url 'posts:delete' pk=post.pk %}" title="delete">
+                <span href="{% url 'posts:delete' pk=post.pk %}" class="text-danger icon-label" id="post-delete"><strong>Delete</strong></span>
+            </a>
+
         {% endif %}
         <div class="media-body">
-            {% if post.user.username in request.path and post.user.username|length|add:"20" == request.path|length %}
-<!--  Essentially, I created a statement to test if the post is the same as the one url. This is useful when viewing your posts, it removes the username from each post.
-So it also will display the username on the community detail page. -->
-
-                   <strong>{{post.user.username}}</strong>
+            {% if post.user.username != user.username %}
+                   <h3 class="post_username"> <a href="{% url 'posts:for_user' username=post.user.username %}"><strong>@{{post.user.username}}</strong></a></h3>
+                {% else %}
+                    <h3 class="post_username">by Me</h3>
                {% endif %}
                <main role="main" class="container">
                 <h5 class="media-heading">

@@ -34,6 +34,11 @@ ul {
     font-size: 15px;
 }
 
+.post_username {
+    position: relative;
+    left: 30px;
+}
+
  #nav-pills {
     background-color: #c4c4c4 !important;
     color: #728f96;
@@ -47,5 +52,5 @@ ul {
 
 #title {
     font-size: 40px;
-    color: black !important;
+    color: black !important
 }

@@ -1,11 +1,16 @@
 {% extends "posts/post_base.html" %}
 
 {% block prepost %}
-    <h1 class="breadcrumb">@{{user.username}}</h1>
+
+    <h1 class="breadcrumb">@{{ post_user.username }}</h1>
 {% endblock %}
 
 {% block post_content %}
-    {% for post in post_list  %}
-        {% include "posts/_post.html" %}
-    {% endfor %}
+    {% if post_list.count != 0 %}
+        {% for post in post_list  %}
+            {% include "posts/_post.html" %}
+        {% endfor %}
+    {% else %}
+        <h3>You don't have any posts yet!</h3>
+    {% endif %}
 {% endblock %}

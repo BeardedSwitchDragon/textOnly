@@ -48,7 +48,7 @@
                 <h2>Community Members:</h2>
                 {% for member in community.members.all %}
                     <br>
-                    <h3>{{ member.username }}</h3>
+                    <a href="{% url 'posts:for_user' username=member.username %}"><h3>@{{ member.username }}</h3></a>
                 {% endfor %}
             {% endif %}
         </div>
