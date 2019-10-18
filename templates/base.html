@@ -13,15 +13,19 @@
         <meta charset="utf-8">
     </head>
     <body>
+        <div class="container">
+            <a href="{% url 'home' %}"><h1 id="title">Text Only</h1></a>
+        </div>
+
 
 
         <ul class="nav nav-pills nav-justified" role="navigation" >
-            <li class="nav-item nav-link " id="nav-pills"> <a href="{% url 'home' %}"><h3>Text Only</h3></a></li>
             <li class="nav-item nav-link " id="nav-pills"> <a href="{% url 'communities:all' %}"> <h3> Communities</h3></a></li>
             {% if user.is_authenticated %}
                 <li class="nav-item nav-link " id="nav-pills"> <a href="{% url 'communities:create' %}"> <h3>Create a Community</h3> </a></li>
                 <li class="nav-item nav-link " id="nav-pills"> <a href="{% url 'accounts:logout' %}"> <h3>Log Out</h3></a></li>
                 <li class="nav-item nav-link " id="nav-pills"> <a href="{% url 'posts:for_user' username=user.username %}"> <h3>My Posts</h3></a></li>
+                <li class="nav-item nav-link" id="nav-pills"> <a href="{% url 'posts:create' %}"><h3>New Post</h3></a></li>
             {% else %}
                 <li class="nav-item nav-link " id="nav-pills"> <a href="{% url 'accounts:signup' %}"> <h3>Sign Up</h3> </a></li>
                 <li class="nav-item nav-link " id="nav-pills"> <a href="{% url 'accounts:login' %}"> <h3>Log In</h3></a></li>

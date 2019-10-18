@@ -44,3 +44,8 @@ ul {
     background-color: #c4c4c4 !important;
     color: #728f96;
 }
+
+#title {
+    font-size: 40px;
+    color: black !important;
+}
