@@ -1,17 +1,27 @@
 {% extends "communities/community_base.html" %}
 {% block precommunity %}
-    <h1>{{community.name}}</h1>
-    <h2>Member Count: {{community.members.count}}</h2>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{community.name}}</h1>
+            <h2>Member Count: {{community.members.count}}</h2>
+            <div class="content">
+                {% if user in community.members.all %}
+                    <a href="{% url 'communities:leave' slug=community.slug %}"
+                        class="btn btn-lg btn-fill btn-warning"> <span class="glyphicon glyphicon-remove-circle"></span>Leave</a>
+                {% else %}
+                    <a href="{% url 'communities:join' slug=community.slug %}"
+                        class="btn btn-lg btn-fill btn-warning"> <span class="glyphicon glyphicon-ok-circle"></span>Join</a>
+                {% endif %}
+            </div>
 
-    <div class="content">
-        {% if user in community.members.all %}
-            <a href="{% url 'communities:leave' slug=community.slug %}"
-                class="btn btn-lg btn-fill btn-warning"> <span class="glyphicon glyphicon-remove-circle"></span>Leave</a>
-        {% else %}
-            <a href="{% url 'communities:join' slug=community.slug %}"
-                class="btn btn-lg btn-fill btn-warning"> <span class="glyphicon glyphicon-ok-circle"></span>Join</a>
-        {% endif %}
+        </div>
+
+
     </div>
+
+
+
+
 
 {% endblock %}
 
@@ -27,5 +37,19 @@
             {% endfor %}
         {% endif %}
 
+    </div>
+{% endblock %}
+
+{% block postcommunity %}
+    <div class="container">
+        <div class="jumbotron">
+            {% if community.members.count <= 15 %}
+                <h2>Community Members:</h2>
+                {% for member in community.members.all %}
+                    <br>
+                    <h3>{{ member.username }}</h3>
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

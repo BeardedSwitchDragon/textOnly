@@ -21,6 +21,9 @@ class SingleCommunity(generic.DetailView):
 
 class ListCommunities(generic.ListView):
     model = Community
+    # def community_list(request):
+    #     context = {model.members.all() : "member_list"}
+    #     return render(request, "", context)
 
 class JoinCommunity(LoginRequiredMixin, generic.RedirectView):
 
