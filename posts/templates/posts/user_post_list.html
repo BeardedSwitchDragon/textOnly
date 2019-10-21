@@ -11,6 +11,10 @@
             {% include "posts/_post.html" %}
         {% endfor %}
     {% else %}
-        <h3>You don't have any posts yet!</h3>
+        {% if post_user.username == user.username %}
+            <h3>You don't have any posts yet!</h3>
+        {% else %}
+            <h3>This user doesn't have any posts yet!</h3>
+        {% endif %}
     {% endif %}
 {% endblock %}

@@ -8,11 +8,13 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'TextOnly/css/master.css'%}">
-    <link rel="stylesheet" href="{% static 'TextOnly/js/main.js'%}">
+    <link rel="stylesheet" href="{% static 'TextOnly/js/master.js'%}">
+    {% load tz_detect %}
+    {% tz_detect %}
     <head>
         <meta charset="utf-8">
     </head>
-    <body>
+    <body onmousedown="draw(event)">
         <div class="container">
             <a href="{% url 'home' %}"><h1 id="title">Text Only</h1></a>
         </div>

@@ -33,7 +33,7 @@
                 <a href="{% url 'communities:single' slug=community.slug %}">
                     <h3 class="title list-community-item-heading">{{community.name}}</h3>
                     <div class="list-community-item-text container-fluid">
-                        {{community.description_html|safe}}
+                        {{ community.description|safe }}
                         <div class="row">
                             <div class="col-md-4">
                                 <span class="badge">{{community.members.count}}</span>

@@ -23,6 +23,7 @@
                </span>
                <span class="time">
                    <a href="{% url 'posts:single' username=post.user.username pk=post.pk%}">
+                       {{ post.created_at }}
                    </a>
                </span>
                </h5>

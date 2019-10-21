@@ -6,13 +6,14 @@ from django.conf import settings
 import misaka
 
 from communities.models import Community
-
+from django.utils import timezone
+import tz_detect
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Post(models.Model):
     user = models.ForeignKey(User, related_name="posts",on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(default=timezone.now)
     message = models.TextField()
     message_html = models.TextField(editable=False)
     community = models.ForeignKey(Community, related_name="posts", null=True, blank=True,on_delete=models.CASCADE)

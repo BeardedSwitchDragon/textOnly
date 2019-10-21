@@ -1,4 +1,0 @@
-
-
-import util
-$('.alert').alert()
